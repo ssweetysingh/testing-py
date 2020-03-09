@@ -8,15 +8,45 @@ app.secret_key = "SECRETSECRETSECRET"
 
 
 def is_mel(name, email):
-    """Is this user Mel?"""
+    """Is this user Mel? Case-insensitive.
 
-    return name == "Mel Melitpolski" or email == "mel@ubermelon.com"
+    Examples:
+    >>> is_mel('Mel Melitpolski', 'mel@ubermelon.com')
+    True
+    >>> is_mel('Judith Butler', 'judith@awesome.com')
+    False
+    >>> is_mel('Mel Melitpolski', 'judith@awesome.com')
+    True
+    >>> is_mel('Judith Butler', 'mel@ubermelon.com')
+    True
+    """
+
+    full_name = "mel melitpolski"
+    mel_email = "mel@ubermelon.com"
+
+    # casefold() converts strings to lowercase
+    return name.casefold() == full_name or email.casefold() == mel_email
 
 
 def most_and_least_common_type(treats):
     """Given list of treats, return most and least common treat types.
 
     Return most and least common treat types in tuple of format (most, least).
+
+    Example:
+    >>> treats = [
+    ...     {'type': 'dessert'},
+    ...     {'type': 'dessert'},
+    ...     {'type': 'appetizer'},
+    ...     {'type': 'dessert'},
+    ...     {'type': 'appetizer'},
+    ...     {'type': 'drink'}
+    ... ]
+    >>> most_and_least_common_type(treats)
+    ('dessert', 'drink')
+
+    >>> most_and_least_common_type(get_treats())
+    ('dessert', 'drink')
     """
 
     types = {}
